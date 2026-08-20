@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Theory - Official Links</title>
+    
+    <!-- Google Fonts: Cinzel (Gothic/Classic) & Montserrat (Modern/Clean) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome untuk Icon Media Sosial -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* CSS Reset & Variabel */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #07030a;
+            --purple-dark: #1f0535;
+            --purple-glow: #4a0e75;
+            --purple-bright: #8a2be2;
+            --text-light: #f5f2f7;
+            --text-gray: #a39bb0;
+            --silver: #d1cbd4;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Video 1:1 & Overlay */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--bg-dark);
+        }
+
+        /* Menampilkan video 1:1 di tengah layar dengan anggun */
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Mengisi layar, silakan ubah ke 'contain' jika ingin rasio 1:1 murni terlihat kotak di tengah */
+            opacity: 0.45;
+            filter: grayscale(20%) contrast(110%);
+        }
+
+        /* Overlay Gradasi Hitam-Ungu untuk Keterbacaan Teks */
+        .background-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: linear-gradient(
+                135deg, 
+                rgba(7, 3, 10, 0.92) 0%, 
+                rgba(31, 5, 53, 0.85) 50%, 
+                rgba(7, 3, 10, 0.95) 100%
+            );
+        }
+
+        /* Canvas untuk Efek Partikel JS */
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Container Utama */
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 20px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        /* Foto Profil (1:1 Ratio dengan bingkai gothic) */
+        .profile-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px auto;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px; /* Sudut agak membulat tapi mempertahankan bentuk 1:1 */
+            border: 2px solid var(--silver);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .profile-container:hover .profile-pic {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.7);
+            border-color: var(--purple-bright);
+        }
+
+        /* Nama Band & Deskripsi */
+        .brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: #fff;
+            text-transform: uppercase;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8), 0 0 15px rgba(138, 43, 226, 0.5);
+            margin-bottom: 8px;
+        }
+
+        .bio {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            margin-bottom: 35px;
+            font-weight: 300;
+        }
+
+        /* Daftar Tombol Links */
+        .links-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 16px 20px;
+            background-color: rgba(7, 3, 10, 0.75);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 4px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Icon styling di dalam tombol */
+        .link-btn i {
+            position: absolute;
+            left: 20px;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            transition: color 0.3s ease;
+        }
+
+        /* Efek Hover Tombol */
+        .link-btn:hover {
+            background-color: rgba(31, 5, 53, 0.5);
+            border-color: var(--purple-bright);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5), inset 0 0 10px rgba(138, 43, 226, 0.2);
+        }
+
+        .link-btn:hover i {
+            color: var(--purple-bright);
+        }
+
+        /* Efek klik aktif */
+        .link-btn:active {
+            transform: translateY(1px);
+        }
+
+        /* Footer & Social Media Icon Row */
+        .social-footer {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            color: var(--text-gray);
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            color: var(--purple-bright);
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.8));
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.65rem;
+            letter-spacing: 1px;
+            color: rgba(163, 155, 176, 0.4);
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Video Section -->
+    <div class="video-container">
+        <!-- Ganti 'background-video.mp4' dengan file video 1:1 gothic Anda -->
+        <video autoplay muted loop playsinline id="bg-video">
+            <source src="background-video.mp4" type="video/mp4">
+            Video tidak didukung oleh browser Anda.
+        </video>
+    </div>
+
+    <!-- Dark Purple overlay for readability -->
+    <div class="background-overlay"></div>
+
+    <!-- Canvas for gothic particle embers effect -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Main Linktree Container -->
+    <div class="container">
+        
+        <!-- Profile Picture (1:1) -->
+        <div class="profile-container">
+            <!-- Ganti 'profile.jpg' dengan foto profil 1:1 band Anda -->
+            <img src="profile.jpg" alt="Under Theory Profile" class="profile-pic">
+        </div>
+
+        <!-- Band Info -->
+        <h1 class="brand-name">Under Theory</h1>
+        <p class="bio">Atmospheric • Alternative • Post-Hardcore</p>
+
+        <!-- Links List -->
+        <div class="links-wrapper">
+            <a href="https://open.spotify.com/artist/1AujrTfyIKYhlSeOqR4ird?si=sr6sWcV9QD-wyKZTV57TFw" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-spotify"></i> Spotify
+            </a>
+            
+            <a href="https://www.youtube.com/@UnderTheory-Official/" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-youtube"></i> YouTube
+            </a>
+
+            <a href="https://www.instagram.com/undertheory_official/" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram"></i> Instagram
+            </a>
+
+            <a href="https://www.tiktok.com/@undertheory_official" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+
+            <a href="https://x.com/UnderTheory_" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-x-twitter"></i> X / Twitter
+            </a>
+        </div>
+
+        <!-- Social Media Icon Row (Footer) -->
+        <div class="social-footer">
+            <a href="https://open.spotify.com/artist/1AujrTfyIKYhlSeOqR4ird?si=sr6sWcV9QD-wyKZTV57TFw" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-spotify"></i></a>
+            <a href="https://www.youtube.com/@UnderTheory-Official/" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
+            <a href="https://www.instagram.com/undertheory_official/" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@undertheory_official" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
+            <a href="https://x.com/UnderTheory_" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+        </div>
+
+        <p class="copyright">&copy; 2026 Under Theory. All Rights Reserved.</p>
+    </div>
+
+    <!-- JavaScript untuk Efek Partikel Melayang (Bara Ungu/Gothic Ash) -->
+    <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let particlesArray = [];
+        const numberOfParticles = 35; // Jumlah abu melayang (tidak terlalu padat agar tetap berkelas)
+
+        // Mengatur ukuran canvas agar selalu memenuhi layar
+        function setCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        setCanvasSize();
+        window.addEventListener('resize', setCanvasSize);
+
+        // Objek Partikel
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height + Math.random() * 100; // Mulai dari bawah layar
+                this.size = Math.random() * 3 + 1; // Ukuran bervariasi
+                this.speedX = Math.random() * 0.6 - 0.3; // Gerakan menyamping lambat
+                this.speedY = -(Math.random() * 0.8 + 0.2); // Bergerak ke atas perlahan
+                this.opacity = Math.random() * 0.5 + 0.1;
+                this.fadeRate = Math.random() * 0.002 + 0.001;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                
+                // Sedikit efek meliuk-liuk (sine wave)
+                this.speedX += Math.sin(this.y * 0.01) * 0.01;
+
+                // Jika partikel keluar layar atau memudar, reset posisinya kembali ke bawah
+                if (this.y < -10 || this.opacity <= 0) {
+                    this.x = Math.random() * canvas.width;
+                    this.y = canvas.height + 10;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedY = -(Math.random() * 0.8 + 0.2);
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                // Menggunakan warna ungu redup menyala (glow)
+                ctx.fillStyle = `rgba(138, 43, 226, ${this.opacity})`;
+                ctx.shadowBlur = 10;
+                ctx.shadowColor = '#8a2be2';
+                ctx.fill();
+                ctx.shadowBlur = 0; // Reset agar tidak mempengaruhi elemen gambar lain
+            }
+        }
+
+        // Inisialisasi partikel
+        function init() {
+            particlesArray = [];
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        init();
+
+        // Loop Animasi
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animate);
+        }
+        animate();
+    </script>
+</body>
+</html>
