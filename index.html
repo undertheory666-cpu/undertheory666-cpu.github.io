@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Under Theory - Official Links</title>
     
+    <!-- Open Graph Metadata untuk Social Media Sharing -->
+    <meta property="og:title" content="Under Theory - Official Links">
+    <meta property="og:description" content="Atmospheric • Alternative • Post-Hardcore">
+    <meta property="og:image" content="profile.jpg">
+    
     <!-- Google Fonts: Cinzel (Gothic/Classic) & Montserrat (Modern/Clean) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome untuk Icon Media Sosial -->
+    <!-- FontAwesome untuk Icon Media Sosial & Logo Majalah (v6.4.0) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -152,7 +157,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            margin-bottom: 40px;
+            margin-bottom: 25px;
         }
 
         .link-btn {
@@ -195,87 +200,179 @@
             color: var(--purple-bright);
         }
 
-        /* --- STYLING KATALOG MEDEA --- */
-        .medea-catalog-card {
-            background-color: rgba(7, 3, 10, 0.85);
-            border: 1px solid rgba(138, 43, 226, 0.4);
-            border-radius: 4px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-            margin-top: 4px;
-        }
-
-        .medea-catalog-card:hover {
-            border-color: var(--purple-bright);
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
-        }
-
-        .medea-trigger {
-            width: 100%;
-            padding: 16px 20px;
-            background: transparent;
-            border: none;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            transition: background 0.3s ease;
-        }
-
-        .medea-trigger:hover {
-            background: rgba(31, 5, 53, 0.4);
-        }
-
-        .medea-trigger-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .medea-trigger-left i {
-            font-size: 1.1rem;
+        /* --- TOMBOL KATALOG LINGKARAN (TANPA LABEL) --- */
+        .catalog-circle-btn {
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(31, 5, 53, 0.9) 0%, rgba(7, 3, 10, 0.95) 100%);
+            border: 1.5px solid var(--purple-bright);
             color: var(--silver);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            margin: 15px auto 35px auto;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.4);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            outline: none;
         }
 
-        .toggle-icon {
-            font-size: 0.9rem;
-            color: var(--text-gray);
+        .catalog-circle-btn:hover {
+            transform: scale(1.15) rotate(6deg);
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.8), inset 0 0 15px rgba(138, 43, 226, 0.4);
+            color: #fff;
+            border-color: #a855f7;
+        }
+
+        /* --- NOVEL READER MODAL OVERLAY --- */
+        .reader-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(5, 2, 8, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            padding: 20px;
+        }
+
+        .reader-modal.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .reader-card {
+            width: 100%;
+            max-width: 500px;
+            height: 80vh;
+            max-height: 700px;
+            background: linear-gradient(180deg, rgba(20, 7, 32, 0.95) 0%, rgba(7, 3, 10, 0.98) 100%);
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 35px rgba(138, 43, 226, 0.4);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.9) translateY(20px);
             transition: transform 0.4s ease;
         }
 
-        .medea-trigger.active .toggle-icon {
-            transform: rotate(180deg);
+        .reader-modal.active .reader-card {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Header Modal Novel */
+        .reader-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.25);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 3, 18, 0.9);
+        }
+
+        .reader-header-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: var(--silver);
+            text-transform: uppercase;
+        }
+
+        .reader-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 1.3rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .reader-close-btn:hover {
             color: var(--purple-bright);
         }
 
-        .medea-expandable {
-            max-height: 0;
+        /* Navigasi Bab (Chapter) */
+        .reader-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 20px;
+            background: rgba(25, 8, 42, 0.4);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.15);
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid rgba(138, 43, 226, 0.4);
+            color: var(--silver);
+            padding: 6px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: var(--purple-bright);
+            color: #fff;
+            border-color: var(--purple-bright);
+            box-shadow: 0 0 10px rgba(138, 43, 226, 0.5);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.25;
+            cursor: not-allowed;
+            border-color: rgba(163, 155, 176, 0.2);
+        }
+
+        .chapter-indicator {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--purple-bright);
+            font-weight: 700;
+        }
+
+        /* Area Isi Konten Novel / Bab */
+        .reader-body {
+            padding: 30px 24px;
+            overflow-y: auto;
+            flex: 1;
+            scroll-behavior: smooth;
+        }
+
+        /* Animasi Membalik Halaman Novel (3D Page Flip) */
+        .chapter-page {
+            display: none;
             opacity: 0;
-            overflow: hidden;
-            transition: max-height 0.8s cubic-bezier(0, 1, 0, 1), opacity 0.4s ease;
+            transform: perspective(800px) rotateY(-12deg) translateX(25px);
+            transition: opacity 0.45 ease, transform 0.45s cubic-bezier(0.25, 1, 0.5, 1);
             text-align: left;
         }
 
-        .medea-expandable.open {
-            max-height: 2000px;
+        .chapter-page.active {
+            display: block;
             opacity: 1;
-            transition: max-height 0.8s ease-in-out, opacity 0.5s ease 0.2s;
+            transform: perspective(800px) rotateY(0deg) translateX(0);
         }
 
-        .medea-inner {
-            padding: 25px 22px 30px 22px;
-            border-top: 1px solid rgba(138, 43, 226, 0.2);
-            background: linear-gradient(180deg, rgba(15, 5, 25, 0.8) 0%, rgba(7, 3, 10, 0.95) 100%);
-        }
-
-        .medea-header {
+        /* Styling Konten di dalam Bab */
+        .catalog-header {
             text-align: center;
             margin-bottom: 25px;
         }
@@ -289,26 +386,37 @@
             margin-bottom: 6px;
         }
 
-        .medea-title {
+        .catalog-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
-            letter-spacing: 6px;
+            font-size: 1.35rem;
+            letter-spacing: 3px;
             color: #fff;
             font-weight: 700;
             text-shadow: 0 0 10px rgba(138, 43, 226, 0.6);
+            line-height: 1.3;
+        }
+
+        .catalog-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-gray);
+            margin-top: 6px;
+            font-style: italic;
         }
 
         .gothic-divider {
             color: rgba(209, 203, 212, 0.4);
             font-size: 0.7rem;
             letter-spacing: 8px;
-            margin-top: 8px;
+            margin-top: 10px;
+            text-align: center;
         }
 
         .story-quote {
             font-family: 'Cinzel', serif;
             font-style: italic;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             line-height: 1.6;
             color: var(--silver);
             border-left: 2px solid var(--purple-bright);
@@ -321,7 +429,7 @@
 
         .story-p {
             font-size: 0.82rem;
-            line-height: 1.7;
+            line-height: 1.75;
             color: #d1cbd4;
             margin-bottom: 16px;
             font-weight: 300;
@@ -341,10 +449,10 @@
             font-weight: 400;
         }
 
-        .medea-footer-quote {
+        .catalog-footer-quote {
             text-align: center;
             font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             letter-spacing: 1px;
             color: var(--purple-bright);
             margin-top: 25px;
@@ -428,62 +536,166 @@
             <a href="https://music.amazon.com/artists/B0HC2QXYHW?ref=AM4APC_AR_P_en_US_B0HC2QXYHW_fpKR8Cp" class="link-btn" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-amazon"></i> Amazon Music
             </a>
-
-            <!-- Katalog Medea (Terletak di bawah Amazon Music) -->
-            <div class="medea-catalog-card">
-                <button class="medea-trigger" id="medeaToggle" onclick="toggleMedea()">
-                    <div class="medea-trigger-left">
-                        <i class="fa-solid fa-scroll"></i>
-                        <span>CATALOG</span>
-                    </div>
-                    <i class="fa-solid fa-chevron-down toggle-icon" id="toggleIcon"></i>
-                </button>
-                
-                <div class="medea-expandable" id="medeaContent">
-                    <div class="medea-inner">
-                        <div class="medea-header">
-                            <span class="catalog-num">CATALOG NO. 01</span>
-                            <h2 class="medea-title">MEDEA</h2>
-                            <div class="gothic-divider">✦ ✦ ✦</div>
-                        </div>
-
-                        <p class="story-quote">"There is a particular kind of despair that lives only inside obsession and not the absence of feeling, but its excess, burning until nothing remains but ash and silence."</p>
-                        
-                        <p class="story-p">There is a loneliness that no crowd can cure. The kind that finds you mid-laughter, mid-conversation, surrounded by voices that somehow never reach you. You are seen by everyone and known by no one.</p>
-                        
-                        <p class="story-p">And then there is the anger. Not the loud kind. The quiet, seething kind of the kind that arrives when love is offered like a debt, when care becomes a cage, when tenderness is wielded as a blade. The kind that asks: <em>"what do I do with all this devotion that was never mine to keep?"</em></p>
-                        
-                        <p class="story-p highlight">Medea is not a story about a villain. It is a story about what happens when a person gives everything and is met with disposal. It is the sound of someone deciding that if they cannot be loved wholly, they will not be loved at all.</p>
-                        
-                        <p class="story-p">This song is for every quiet rage you have swallowed. For every room full of people where you still felt like a ghost. For every love that made you smaller instead of seen.</p>
-
-                        <div class="medea-footer-quote">
-                            "You don't have to chase the stars. But you are allowed to worship it."
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+
+        <!-- TOMBOL KATALOG LINGKARAN BERLOGO MAJALAH (TANPA LABEL) -->
+        <button class="catalog-circle-btn" onclick="openReader()" title="Open Catalog Journal">
+            <i class="fa-solid fa-book-open"></i>
+        </button>
 
         <!-- Social Media Footer Icons (Instagram, X/Twitter, TikTok) -->
         <div class="social-footer">
             <a href="https://www.instagram.com/undertheory_official/" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://x.com/UnderTheory_" class="social-icon" target="_blank" rel="noopener noreferrer" title="X (Twitter)"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://x.com/UnderTheory_" class="social-icon" target="_blank" rel="noopener noreferrer" title="X (Twitter)"><i class="fa-brands fa-x-twitter"></i></a>
             <a href="https://www.tiktok.com/@undertheory_official" class="social-icon" target="_blank" rel="noopener noreferrer" title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
         </div>
 
         <p class="copyright">&copy; 2026 Under Theory. All Rights Reserved.</p>
     </div>
 
-    <!-- JavaScript untuk Interaksi Katalog & Partikel Gothic -->
+    <!-- MODAL NOVEL READER (TAMPILAN PER BAB) -->
+    <div class="reader-modal" id="readerModal">
+        <div class="reader-card">
+            <!-- Header Reader -->
+            <div class="reader-header">
+                <span class="reader-header-title"><i class="fa-solid fa-feather-pointed"></i> CATALOGUE ARCHIVES</span>
+                <button class="reader-close-btn" onclick="closeReader()"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Navigasi Bab Novel -->
+            <div class="reader-nav">
+                <button class="nav-btn" id="prevBtn" onclick="changeChapter(-1)">
+                    <i class="fa-solid fa-chevron-left"></i> PREV
+                </button>
+                <span class="chapter-indicator" id="chapterIndicator">CHAPTER 01 / 03</span>
+                <button class="nav-btn" id="nextBtn" onclick="changeChapter(1)">
+                    NEXT <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Body Tempat Membaca Per Bab -->
+            <div class="reader-body" id="readerBody">
+                
+                <!-- BAB 01: MEDEA -->
+                <div class="chapter-page active">
+                    <div class="catalog-header">
+                        <span class="catalog-num">CHAPTER 01</span>
+                        <h2 class="catalog-title">MEDEA</h2>
+                        <div class="gothic-divider">✦ ✦ ✦</div>
+                    </div>
+
+                    <p class="story-quote">"There is a particular kind of despair that lives only inside obsession and not the absence of feeling, but its excess, burning until nothing remains but ash and silence."</p>
+                    
+                    <p class="story-p">There is a loneliness that no crowd can cure. The kind that finds you mid-laughter, mid-conversation, surrounded by voices that somehow never reach you. You are seen by everyone and known by no one.</p>
+                    
+                    <p class="story-p">And then there is the anger. Not the loud kind. The quiet, seething kind of the kind that arrives when love is offered like a debt, when care becomes a cage, when tenderness is wielded as a blade. The kind that asks: <em>"what do I do with all this devotion that was never mine to keep?"</em></p>
+                    
+                    <p class="story-p highlight">Medea is not a story about a villain. It is a story about what happens when a person gives everything and is met with disposal. It is the sound of someone deciding that if they cannot be loved wholly, they will not be loved at all.</p>
+                    
+                    <p class="story-p">This song is for every quiet rage you have swallowed. For every room full of people where you still felt like a ghost. For every love that made you smaller instead of seen.</p>
+
+                    <div class="catalog-footer-quote">
+                        "You don't have to chase the stars. But you are allowed to worship it."
+                    </div>
+                </div>
+
+                <!-- BAB 02: EITHER I LIVE, OR I WILL LEAVE -->
+                <div class="chapter-page">
+                    <div class="catalog-header">
+                        <span class="catalog-num">CHAPTER 02</span>
+                        <h2 class="catalog-title">EITHER I LIVE, OR I WILL LEAVE</h2>
+                        <p class="catalog-subtitle">From "Raise the Skies and the Stars Won't Fall"</p>
+                        <div class="gothic-divider">✦ ✦ ✦</div>
+                    </div>
+
+                    <p class="story-quote">"A love song that is also a farewell. Born not of hatred, but of the unbearable distance between being loved and feeling found."</p>
+                    
+                    <p class="story-p">A meditation on the most isolating form of solitude: the loneliness that persists even when one is loved. It is the paradox of being surrounded, yet utterly unseen; of being held, yet feeling as though no hand has ever reached you.</p>
+                    
+                    <p class="story-p">The song opens with a question that lingers like a wound that refuses to close: <em>"Why do I always feel surrounded?"</em> This is not the solitude of abandonment—it is the disorienting realization that presence does not guarantee connection. The beloved exists as both <em>"the lesson"</em> and <em>"pure grace,"</em> yet the narrator remains bound to <em>"the thorns that you don't know how they taste."</em> Love is present, but its weight is carried alone.</p>
+                    
+                    <p class="story-p"><em>"I'll wait until you wake up, I won't let it in when it turns up"</em> captures the quiet exhaustion of performing stability for someone who loves you. You wait for them to see you, while refusing to let the grief breach the surface.</p>
+                    
+                    <p class="story-p highlight"><em>"Tempest, Heaven; They will not hold us both."</em> Love, in its fullest form, is not enough to contain two people who exist in different emotional realities. One drowns while the other watches the sky. The <em>"fractured hatred"</em> is not directed at the beloved—it is directed at the self for bleeding in a room where someone is trying to heal you.</p>
+                    
+                    <p class="story-p">The second verse deepens the isolation: <em>"The waters are coming without you, and I don't believe that they would."</em> The narrator does not doubt the beloved's intention, only their ability to arrive in time. <em>"The sky never turns the same blue"</em> speaks to the irreversible alteration of perception—once you have felt alone inside a relationship, the world never looks the same again.</p>
+
+                    <div class="catalog-footer-quote">
+                        "There is only the repetition, the asking, the waiting for a sky that has already changed color."
+                    </div>
+                </div>
+
+                <!-- BAB 03: STATIC -->
+                <div class="chapter-page">
+                    <div class="catalog-header">
+                        <span class="catalog-num">CHAPTER 03</span>
+                        <h2 class="catalog-title">STATIC</h2>
+                        <div class="gothic-divider">✦ ✦ ✦</div>
+                    </div>
+
+                    <p class="story-quote">"Static is the sound of a body trying to remember what a soul used to feel. The chronicle of a love that has retreated entirely into the physical."</p>
+                    
+                    <p class="story-p">The song opens with a plea that is equal parts devotion and dread: <em>"Baby, you haunt me. Don't make me linger. Slowly, don't leave me. Don't make it bitter."</em> There is no anger here—only the quiet terror of someone who senses the emotional architecture collapsing and reaches for the body. <em>"Slowly, don't leave me"</em> is a negotiation for delay, letting the dissolution arrive in increments so the silence isn't heard all at once.</p>
+                    
+                    <p class="story-p"><em>"And now she touches me under the grey light… under the daylight."</em> Touch persists, but beneath it lies a fracture: <em>"I will be the atom space and You won't wake up with your heart races."</em> The narrator is becoming the empty distance between particles. The physical act remains, but the electricity that gave it meaning has drained away.</p>
+                    
+                    <p class="story-p highlight"><em>"Your skin of chest shines in a burning light. Your sweat of neck keeps on drowning me out."</em> This is immersion so total it becomes annihilation. You press yourself against someone's body to feel close, and all you feel is how far away they are beneath the skin.</p>
+                    
+                    <p class="story-p"><em>"Drag me down, down the light. Drag me down, down the line."</em> A slow, gravitational pull along the wire where the signal used to travel, where now there is only static. <em>"She grasps me like filaments with her body"</em>—holding on brilliantly, briefly, and at the cost of itself. <em>"Will you swing your hips like tonight? Will you sing for me and leave this party?"</em> are questions trying to keep a dying performance alive.</p>
+
+                    <div class="catalog-footer-quote">
+                        "Two bodies in the same room, generating heat, producing no sound."
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript untuk Navigasi Novel & Partikel Gothic -->
     <script>
-        // Fungsi Toggle Buka/Tutup Katalog Medea
-        function toggleMedea() {
-            const content = document.getElementById('medeaContent');
-            const trigger = document.getElementById('medeaToggle');
-            content.classList.toggle('open');
-            trigger.classList.toggle('active');
+        let currentChapter = 0;
+        const chapters = document.querySelectorAll('.chapter-page');
+        const totalChapters = chapters.length;
+
+        function openReader() {
+            document.getElementById('readerModal').classList.add('active');
+            updateReaderUI();
         }
+
+        function closeReader() {
+            document.getElementById('readerModal').classList.remove('active');
+        }
+
+        function changeChapter(direction) {
+            const newChapter = currentChapter + direction;
+            if (newChapter >= 0 && newChapter < totalChapters) {
+                chapters[currentChapter].classList.remove('active');
+                currentChapter = newChapter;
+                
+                // Reset scroll ke paling atas tiap kali ganti bab
+                document.getElementById('readerBody').scrollTop = 0;
+                
+                setTimeout(() => {
+                    chapters[currentChapter].classList.add('active');
+                }, 50);
+
+                updateReaderUI();
+            }
+        }
+
+        function updateReaderUI() {
+            document.getElementById('chapterIndicator').innerText = `CHAPTER 0${currentChapter + 1} / 0${totalChapters}`;
+            document.getElementById('prevBtn').disabled = (currentChapter === 0);
+            document.getElementById('nextBtn').disabled = (currentChapter === totalChapters - 1);
+        }
+
+        // Tutup modal jika menekan tombol Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeReader();
+            }
+        });
 
         // Efek Partikel Gothic (Bara/Abu Ungu Melayang)
         const canvas = document.getElementById('particle-canvas');
