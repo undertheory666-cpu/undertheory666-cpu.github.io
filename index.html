@@ -8,9 +8,9 @@
     <!-- Google Fonts: Cinzel (Gothic/Classic) & Montserrat (Modern/Clean) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:ital,wght@0,400;0,700;0,900;1,400&family=Montserrat:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome untuk Icon Media Sosial -->
+    <!-- FontAwesome untuk Icon Media Sosial & Musik -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
@@ -31,6 +31,11 @@
             --silver: #d1cbd4;
         }
 
+        /* Mengatur agar halaman bisa di-scroll secara halus */
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-dark);
@@ -38,12 +43,13 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            overflow-x: hidden;
+            align-items: flex-start;
+            padding: 50px 0;
             position: relative;
+            overflow-y: auto;
         }
 
-        /* Background Video 1:1 & Overlay */
+        /* Background Video 1:1 (Tatap Tetap/Fixed saat di-scroll) */
         .video-container {
             position: fixed;
             top: 0;
@@ -62,11 +68,11 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.45;
+            opacity: 0.4;
             filter: grayscale(20%) contrast(110%);
         }
 
-        /* Overlay Gradasi Hitam-Ungu untuk Keterbacaan Teks */
+        /* Overlay Gradasi Hitam-Ungu */
         .background-overlay {
             position: fixed;
             top: 0;
@@ -77,12 +83,12 @@
             background: linear-gradient(
                 135deg, 
                 rgba(7, 3, 10, 0.92) 0%, 
-                rgba(31, 5, 53, 0.85) 50%, 
+                rgba(31, 5, 53, 0.88) 50%, 
                 rgba(7, 3, 10, 0.95) 100%
             );
         }
 
-        /* Canvas untuk Efek Partikel JS */
+        /* Canvas untuk Efek Partikel JS (Fixed) */
         #particle-canvas {
             position: fixed;
             top: 0;
@@ -96,8 +102,8 @@
         /* Container Utama */
         .container {
             width: 100%;
-            max-width: 480px;
-            padding: 40px 20px;
+            max-width: 520px;
+            padding: 0 20px;
             text-align: center;
             z-index: 1;
         }
@@ -105,8 +111,8 @@
         /* Foto Profil (1:1 Ratio dengan bingkai gothic) */
         .profile-container {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             margin: 0 auto 20px auto;
         }
 
@@ -129,7 +135,7 @@
         /* Nama Band & Deskripsi */
         .brand-name {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 2rem;
             font-weight: 700;
             letter-spacing: 4px;
             color: #fff;
@@ -143,11 +149,11 @@
             letter-spacing: 2px;
             color: var(--text-gray);
             text-transform: uppercase;
-            margin-bottom: 35px;
+            margin-bottom: 30px;
             font-weight: 300;
         }
 
-        /* Daftar Tombol Links */
+        /* Daftar Tombol Streaming Musik Utama */
         .links-wrapper {
             display: flex;
             flex-direction: column;
@@ -161,8 +167,8 @@
             justify-content: center;
             position: relative;
             padding: 16px 20px;
-            background-color: rgba(7, 3, 10, 0.75);
-            border: 1px solid rgba(138, 43, 226, 0.3);
+            background-color: rgba(7, 3, 10, 0.8);
+            border: 1px solid rgba(138, 43, 226, 0.35);
             border-radius: 4px;
             color: var(--text-light);
             text-decoration: none;
@@ -184,7 +190,7 @@
         }
 
         .link-btn:hover {
-            background-color: rgba(31, 5, 53, 0.5);
+            background-color: rgba(31, 5, 53, 0.6);
             border-color: var(--purple-bright);
             color: #fff;
             transform: translateY(-2px);
@@ -195,23 +201,77 @@
             color: var(--purple-bright);
         }
 
-        .link-btn:active {
-            transform: translateY(1px);
+        /* Pembatas Dekoratif */
+        .divider {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--purple-bright), transparent);
+            margin: 40px auto;
         }
 
-        /* Footer & Social Media Icon Row */
+        /* Bagian Backstory "Medea" */
+        .story-section {
+            background: rgba(15, 5, 25, 0.75);
+            border: 1px solid rgba(138, 43, 226, 0.25);
+            border-radius: 8px;
+            padding: 35px 25px;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            margin-bottom: 40px;
+        }
+
+        .story-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--text-light);
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .story-subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            color: var(--purple-bright);
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .story-content p {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 18px;
+            font-weight: 300;
+            text-align: justify;
+        }
+
+        .story-content p:last-child {
+            margin-bottom: 0;
+            font-style: italic;
+            color: var(--silver);
+            text-align: center;
+            margin-top: 25px;
+            font-weight: 400;
+        }
+
+        /* Footer & Social Media Icons */
         .social-footer {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 20px;
-            padding: 0 10px;
+            align-items: center;
+            gap: 28px;
+            margin-top: 10px;
         }
 
         .social-icon {
             color: var(--text-gray);
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             transition: all 0.3s ease;
             text-decoration: none;
         }
@@ -219,11 +279,11 @@
         .social-icon:hover {
             color: var(--purple-bright);
             transform: scale(1.2);
-            filter: drop-shadow(0 0 8px rgba(138, 43, 226, 0.8));
+            filter: drop-shadow(0 0 10px rgba(138, 43, 226, 0.8));
         }
 
         .copyright {
-            margin-top: 30px;
+            margin-top: 25px;
             font-size: 0.65rem;
             letter-spacing: 1px;
             color: rgba(163, 155, 176, 0.4);
@@ -233,20 +293,21 @@
 </head>
 <body>
 
-    <!-- Background Video Section -->
+    <!-- Background Video Section (1:1) -->
     <div class="video-container">
         <video autoplay muted loop playsinline id="bg-video">
             <source src="background-video.mp4" type="video/mp4">
+            Video tidak didukung oleh browser Anda.
         </video>
     </div>
 
-    <!-- Dark Purple overlay for readability -->
+    <!-- Dark Purple Overlay -->
     <div class="background-overlay"></div>
 
-    <!-- Canvas for gothic particle embers effect -->
+    <!-- Canvas Partikel Gothic -->
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Main Linktree Container -->
+    <!-- Main Container -->
     <div class="container">
         
         <!-- Profile Picture (1:1) -->
@@ -258,7 +319,7 @@
         <h1 class="brand-name">Under Theory</h1>
         <p class="bio">Atmospheric • Alternative • Post-Hardcore</p>
 
-        <!-- Links List -->
+        <!-- Tombol Platform Musik Utama (Khusus Streaming) -->
         <div class="links-wrapper">
             <a href="https://open.spotify.com/artist/1AujrTfyIKYhlSeOqR4ird?si=sr6sWcV9QD-wyKZTV57TFw" class="link-btn" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-spotify"></i> Spotify
@@ -268,42 +329,55 @@
                 <i class="fa-brands fa-apple"></i> Apple Music
             </a>
 
+            <a href="https://www.youtube.com/@UnderTheory-Official/" class="link-btn" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-youtube"></i> YouTube Music
+            </a>
+
             <a href="https://music.amazon.com/artists/B0HC2QXYHW?ref=AM4APC_AR_P_en_US_B0HC2QXYHW_fpKR8Cp" class="link-btn" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-amazon"></i> Amazon Music
             </a>
-            
-            <a href="https://music.youtube.com/@undertheory-official" class="link-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-youtube"></i> YouTube
-            </a>
-
-            <a href="https://www.instagram.com/undertheory_official/" class="link-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-instagram"></i> Instagram
-            </a>
-
-            <a href="https://www.tiktok.com/@undertheory_official" class="link-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-tiktok"></i> TikTok
-            </a>
-
-            <a href="https://x.com/UnderTheory_" class="link-btn" target="_blank" rel="noopener noreferrer">
-                <i class="fa-brands fa-x-twitter"></i> X / Twitter
-            </a>
         </div>
 
-        <!-- Social Media Icon Row (Footer) -->
+        <div class="divider"></div>
+
+        <!-- Section Story "Medea" -->
+        <div class="story-section">
+            <h2 class="story-title">Medea</h2>
+            <p class="story-subtitle">The Backstory</p>
+            
+            <div class="story-content">
+                <p>There is a particular kind of despair that lives only inside obsession and not the absence of feeling, but its excess, burning until nothing remains but ash and silence.</p>
+                
+                <p>There is a loneliness that no crowd can cure. The kind that finds you mid-laughter, mid-conversation, surrounded by voices that somehow never reach you. You are seen by everyone and known by no one. And then there is the anger. Not the loud kind. The quiet, seething kind that arrives when love is offered like a debt, when care becomes a cage, when tenderness is wielded as a blade. The kind that asks: <em>"What do I do with all this devotion that was never mine to keep?"</em></p>
+                
+                <p>Medea is not a story about a villain. It is a story about what happens when a person gives everything and is met with disposal. It is the sound of someone deciding that if they cannot be loved wholly, they will not be loved at all.</p>
+                
+                <p>This song is for every quiet rage you have swallowed. For every room full of people where you still felt like a ghost. For every love that made you smaller instead of seen.</p>
+                
+                <p>You don't have to chase the stars. But you are allowed to worship it.</p>
+            </div>
+        </div>
+
+        <!-- Social Media Icons (Hanya di Bagian Bawah) -->
         <div class="social-footer">
-            <a href="https://open.spotify.com/artist/1AujrTfyIKYhlSeOqR4ird?si=sr6sWcV9QD-wyKZTV57TFw" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-spotify"></i></a>
-            <a href="https://music.apple.com/us/artist/under-theory/6795514773" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-apple"></i></a>
-            <a href="https://music.amazon.com/artists/B0HC2QXYHW?ref=AM4APC_AR_P_en_US_B0HC2QXYHW_fpKR8Cp" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-amazon"></i></a>
-            <a href="https://www.youtube.com/@UnderTheory-Official/" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-youtube"></i></a>
-            <a href="https://www.instagram.com/undertheory_official/" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-instagram"></i></a>
-            <a href="https://www.tiktok.com/@undertheory_official" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-tiktok"></i></a>
-            <a href="https://x.com/UnderTheory_" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/undertheory_official/" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            
+            <!-- Logo Twitter / X -->
+            <a href="https://x.com/UnderTheory_" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter / X">
+                <i class="fa-brands fa-twitter"></i>
+            </a>
+
+            <a href="https://www.tiktok.com/@undertheory_official" class="social-icon" target="_blank" rel="noopener noreferrer" title="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
         </div>
 
         <p class="copyright">&copy; 2026 Under Theory. All Rights Reserved.</p>
     </div>
 
-    <!-- JavaScript untuk Efek Partikel Melayang (Bara Ungu/Gothic Ash) -->
+    <!-- JavaScript Partikel Melayang (Bara Ungu) -->
     <script>
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
@@ -326,7 +400,6 @@
                 this.speedX = Math.random() * 0.6 - 0.3;
                 this.speedY = -(Math.random() * 0.8 + 0.2);
                 this.opacity = Math.random() * 0.5 + 0.1;
-                this.fadeRate = Math.random() * 0.002 + 0.001;
             }
 
             update() {
