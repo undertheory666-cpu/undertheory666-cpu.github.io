@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Theory - The Tarnished</title>
+    <title>Under Theory - Official Link</title>
     
     <!-- Open Graph Metadata -->
     <meta property="og:title" content="Under Theory - Official Links">
@@ -21,16 +21,18 @@
     <style>
         /* --- RESET & VARIABLES --- */
         :root {
-            --bg-void: #020000; /* Pure Black */
-            --bg-blood: #0f0202; /* Deep Blood Red Background */
-            --gold-primary: #cfb53b; /* Tarnished Gold */
-            --gold-dim: #8a7625;
-            --blood-red: #8a0303;
-            --blood-bright: #ff0000;
-            --text-main: #e0d8c0; /* Parchment White */
-            --text-dim: #6b5d45;
+            --bg-void: #030005;
+            --bg-deep: #0a0012;
+            --violet-primary: #9b6dff;
+            --violet-dim: #5b2d8e;
+            --violet-deep: #6b21a8;
+            --violet-bright: #c084fc;
+            --violet-dark: #1a0533;
+            --violet-muted: #3b1a6e;
+            --text-main: #e8e0f0;
+            --text-dim: #6b5a80;
             
-            --font-display: 'Cinzel', serif; /* Back to Standard Cinzel */
+            --font-display: 'Cinzel', serif;
             --font-mono: 'Space Mono', monospace;
         }
 
@@ -42,7 +44,7 @@
             font-family: var(--font-mono);
             overflow-x: hidden;
             min-height: 100vh;
-            background-image: radial-gradient(circle at center, #1a0505 0%, #000000 100%);
+            background-image: radial-gradient(circle at center, #12002a 0%, #000000 100%);
         }
 
         /* --- LOADING SCREEN --- */
@@ -58,30 +60,30 @@
         }
         .loader-text {
             font-family: var(--font-display);
-            color: var(--gold-primary);
+            color: var(--violet-primary);
             font-size: 1rem;
             letter-spacing: 4px;
             margin-bottom: 20px;
             text-transform: uppercase;
-            animation: pulseGold 2s infinite;
+            animation: pulseViolet 2s infinite;
         }
         .ring-symbol {
             width: 60px;
             height: 60px;
-            border: 2px solid var(--gold-primary);
+            border: 2px solid var(--violet-primary);
             border-radius: 50%;
             position: relative;
             animation: spinRing 4s linear infinite;
-            box-shadow: 0 0 15px var(--gold-primary);
+            box-shadow: 0 0 15px var(--violet-primary), 0 0 30px rgba(155, 109, 255, 0.3);
         }
         .ring-symbol::before {
             content: ''; position: absolute; top: 50%; left: 50%;
             width: 40px; height: 40px;
-            border: 1px solid var(--blood-red);
+            border: 1px solid var(--violet-deep);
             transform: translate(-50%, -50%) rotate(45deg);
         }
 
-        @keyframes pulseGold { 0%, 100% { opacity: 0.5; text-shadow: 0 0 5px var(--gold-dim); } 50% { opacity: 1; text-shadow: 0 0 20px var(--gold-primary); } }
+        @keyframes pulseViolet { 0%, 100% { opacity: 0.5; text-shadow: 0 0 5px var(--violet-dim); } 50% { opacity: 1; text-shadow: 0 0 20px var(--violet-primary), 0 0 40px rgba(155,109,255,0.4); } }
         @keyframes spinRing { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* --- BACKGROUND LAYERS --- */
@@ -92,8 +94,8 @@
         .bg-img {
             width: 100%; height: 100%;
             object-fit: cover;
-            opacity: 0.2;
-            filter: sepia(80%) hue-rotate(-50deg) contrast(150%) brightness(0.6);
+            opacity: 0.18;
+            filter: hue-rotate(240deg) saturate(0.6) contrast(140%) brightness(0.5);
             animation: slowZoom 30s infinite alternate;
         }
         @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
@@ -128,23 +130,23 @@
             position: relative;
             width: 150px; height: 150px;
             margin: 0 auto 30px;
-            border: 1px solid var(--gold-dim);
+            border: 1px solid var(--violet-dim);
             padding: 5px;
             background: rgba(0,0,0,0.5);
         }
         .profile-img {
             width: 100%; height: 100%;
             object-fit: cover;
-            filter: grayscale(100%) sepia(20%) contrast(110%);
+            filter: grayscale(100%) contrast(110%);
             transition: all 0.6s ease;
         }
         .profile-wrap:hover .profile-img {
             filter: grayscale(0%) sepia(0%);
-            box-shadow: 0 0 25px var(--blood-red);
+            box-shadow: 0 0 25px var(--violet-deep);
         }
         .profile-wrap::before, .profile-wrap::after {
             content: ''; position: absolute; width: 10px; height: 10px;
-            border: 1px solid var(--gold-primary);
+            border: 1px solid var(--violet-primary);
             transition: all 0.3s;
         }
         .profile-wrap::before { top: -2px; left: -2px; border-right: none; border-bottom: none; }
@@ -155,10 +157,10 @@
             font-size: 2.4rem;
             font-weight: 700;
             letter-spacing: 4px;
-            color: var(--gold-primary);
+            color: var(--violet-primary);
             text-transform: uppercase;
             margin-bottom: 10px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 15px rgba(207, 181, 59, 0.3);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(155, 109, 255, 0.4);
             cursor: pointer;
             user-select: none;
             line-height: 1.1;
@@ -170,7 +172,7 @@
             letter-spacing: 5px;
             text-transform: uppercase;
             margin-bottom: 50px;
-            border-bottom: 1px solid var(--blood-red);
+            border-bottom: 1px solid var(--violet-deep);
             display: inline-block;
             padding-bottom: 8px;
         }
@@ -187,8 +189,8 @@
             display: flex;
             align-items: center;
             padding: 20px 25px;
-            background: linear-gradient(90deg, rgba(10,0,0,0.8) 0%, rgba(20,5,5,0.6) 100%);
-            border: 1px solid rgba(207, 181, 59, 0.2);
+            background: linear-gradient(90deg, rgba(5,0,15,0.85) 0%, rgba(15,5,35,0.6) 100%);
+            border: 1px solid rgba(155, 109, 255, 0.2);
             color: var(--text-main);
             text-decoration: none;
             font-family: var(--font-display);
@@ -201,7 +203,7 @@
         .eq-link i {
             font-size: 1.2rem;
             width: 35px;
-            color: var(--gold-dim);
+            color: var(--violet-dim);
             transition: color 0.3s;
         }
         .eq-link span { flex: 1; text-align: left; }
@@ -215,22 +217,22 @@
         .rune-shard {
             width: 2px;
             height: 12px;
-            background: var(--blood-red);
+            background: var(--violet-deep);
             transform: skewX(-20deg);
         }
         
         .eq-link:hover {
-            background: linear-gradient(90deg, rgba(40,0,0,0.9) 0%, rgba(60,10,10,0.8) 100%);
-            border-color: var(--gold-primary);
+            background: linear-gradient(90deg, rgba(20,0,45,0.9) 0%, rgba(40,10,70,0.8) 100%);
+            border-color: var(--violet-primary);
             transform: translateX(5px);
-            box-shadow: -5px 0 20px rgba(138, 3, 3, 0.4);
+            box-shadow: -5px 0 20px rgba(107, 33, 168, 0.5);
         }
-        .eq-link:hover i { color: var(--gold-primary); text-shadow: 0 0 8px var(--gold-primary); }
+        .eq-link:hover i { color: var(--violet-primary); text-shadow: 0 0 8px var(--violet-primary); }
         .eq-link:hover .runes-container { opacity: 1; }
         
         .eq-link:hover .rune-shard {
             animation: runePulse 0.6s infinite alternate;
-            background: var(--gold-primary);
+            background: var(--violet-primary);
         }
         .rune-shard:nth-child(1) { animation-delay: 0.0s; }
         .rune-shard:nth-child(2) { animation-delay: 0.1s; }
@@ -238,14 +240,14 @@
 
         @keyframes runePulse {
             0% { height: 12px; opacity: 0.5; }
-            100% { height: 20px; opacity: 1; box-shadow: 0 0 5px var(--blood-bright); }
+            100% { height: 20px; opacity: 1; box-shadow: 0 0 5px var(--violet-bright); }
         }
 
         /* --- CATALOG BUTTON --- */
         .catalog-trigger {
             background: transparent;
-            border: 1px solid var(--gold-dim);
-            color: var(--gold-primary);
+            border: 1px solid var(--violet-dim);
+            color: var(--violet-primary);
             padding: 18px 40px;
             font-family: var(--font-display);
             font-size: 1rem;
@@ -261,14 +263,14 @@
         .catalog-trigger::before {
             content: ''; position: absolute; top: 0; left: -100%;
             width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(207, 181, 59, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(155, 109, 255, 0.2), transparent);
             transition: 0.6s;
         }
         .catalog-trigger:hover {
-            border-color: var(--blood-red);
+            border-color: var(--violet-deep);
             color: #fff;
-            background: rgba(138, 3, 3, 0.2);
-            box-shadow: 0 0 25px rgba(138, 3, 3, 0.6);
+            background: rgba(107, 33, 168, 0.25);
+            box-shadow: 0 0 25px rgba(107, 33, 168, 0.6), 0 0 50px rgba(155, 109, 255, 0.2);
             text-shadow: 0 0 5px #fff;
         }
         .catalog-trigger:hover::before { left: 100%; }
@@ -286,8 +288,8 @@
             transition: all 0.3s;
         }
         .socials a:hover {
-            color: var(--gold-primary);
-            text-shadow: 0 0 15px var(--blood-red);
+            color: var(--violet-primary);
+            text-shadow: 0 0 15px var(--violet-deep);
             transform: translateY(-5px);
         }
         .copyright {
@@ -300,7 +302,7 @@
         /* --- READER MODAL (The Grimoire) --- */
         .reader-modal {
             position: fixed; inset: 0;
-            background: rgba(2, 0, 0, 0.98);
+            background: rgba(3, 0, 5, 0.98);
             backdrop-filter: blur(10px);
             z-index: 5000;
             display: flex;
@@ -315,9 +317,9 @@
         .reader-card {
             width: 90%; max-width: 650px;
             height: 85vh;
-            background: #0a0202;
-            border: 1px solid var(--gold-dim);
-            box-shadow: 0 0 60px rgba(0,0,0,0.9), inset 0 0 50px rgba(0,0,0,0.8);
+            background: #080010;
+            border: 1px solid var(--violet-dim);
+            box-shadow: 0 0 60px rgba(0,0,0,0.9), 0 0 30px rgba(107, 33, 168, 0.2), inset 0 0 50px rgba(0,0,0,0.8);
             display: flex;
             flex-direction: column;
             position: relative;
@@ -327,7 +329,7 @@
         .reader-card::before {
             content: ''; position: absolute; top: -1px; left: -1px; right: -1px; bottom: -1px;
             border: 1px solid transparent;
-            background: linear-gradient(135deg, var(--gold-dim) 0%, transparent 10%, transparent 90%, var(--gold-dim) 100%);
+            background: linear-gradient(135deg, var(--violet-dim) 0%, transparent 10%, transparent 90%, var(--violet-dim) 100%);
             z-index: -1;
             opacity: 0.5;
         }
@@ -335,18 +337,18 @@
 
         .reader-header {
             padding: 25px;
-            border-bottom: 1px solid rgba(207, 181, 59, 0.2);
+            border-bottom: 1px solid rgba(155, 109, 255, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(10, 2, 2, 0.9);
+            background: rgba(8, 0, 16, 0.9);
         }
         .reader-title {
             font-family: var(--font-display);
-            color: var(--gold-primary);
+            color: var(--violet-primary);
             letter-spacing: 3px;
             font-size: 1rem;
-            text-shadow: 0 0 10px rgba(207, 181, 59, 0.4);
+            text-shadow: 0 0 10px rgba(155, 109, 255, 0.4);
         }
         .close-btn {
             background: none; border: none;
@@ -356,33 +358,33 @@
             transition: color 0.3s;
             font-family: var(--font-display);
         }
-        .close-btn:hover { color: var(--blood-bright); }
+        .close-btn:hover { color: var(--violet-bright); }
 
         .reader-nav {
             display: flex;
             justify-content: space-between;
             padding: 20px 30px;
-            background: rgba(20, 5, 5, 0.3);
+            background: rgba(15, 5, 30, 0.3);
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         .nav-btn {
             background: transparent;
-            border: 1px solid rgba(207, 181, 59, 0.3);
-            color: var(--gold-dim);
+            border: 1px solid rgba(155, 109, 255, 0.3);
+            color: var(--violet-dim);
             padding: 8px 20px;
             font-family: var(--font-display);
-            font-size: 1.2rem; /* Larger for arrow */
+            font-size: 1.2rem;
             cursor: pointer;
             transition: all 0.3s;
             letter-spacing: 0px;
             min-width: 50px;
         }
         .nav-btn:hover:not(:disabled) {
-            border-color: var(--gold-primary);
-            color: var(--gold-primary);
-            box-shadow: 0 0 10px rgba(207, 181, 59, 0.2);
+            border-color: var(--violet-primary);
+            color: var(--violet-primary);
+            box-shadow: 0 0 10px rgba(155, 109, 255, 0.3);
         }
-        .nav-btn:disabled { opacity: 0.2; cursor: not-allowed; border-color: #333; }
+        .nav-btn:disabled { opacity: 0.2; cursor: not-allowed; border-color: #222; }
         .chapter-ind {
             font-family: var(--font-display);
             color: var(--text-main);
@@ -398,8 +400,8 @@
             position: relative;
         }
         .reader-content::-webkit-scrollbar { width: 4px; }
-        .reader-content::-webkit-scrollbar-track { background: #050000; }
-        .reader-content::-webkit-scrollbar-thumb { background: var(--gold-dim); }
+        .reader-content::-webkit-scrollbar-track { background: #030008; }
+        .reader-content::-webkit-scrollbar-thumb { background: var(--violet-dim); }
 
         .chapter-page {
             display: none;
@@ -416,13 +418,13 @@
             width: 100%; height: 220px;
             object-fit: cover;
             margin-bottom: 30px;
-            filter: sepia(60%) contrast(120%) brightness(0.8);
-            border: 1px solid var(--gold-dim);
+            filter: hue-rotate(240deg) saturate(0.5) contrast(130%) brightness(0.7);
+            border: 1px solid var(--violet-dim);
             box-shadow: 0 5px 20px rgba(0,0,0,0.8);
         }
         .chap-num {
             font-family: var(--font-mono);
-            color: var(--blood-red);
+            color: var(--violet-deep);
             font-size: 0.7rem;
             letter-spacing: 4px;
             margin-bottom: 10px;
@@ -432,32 +434,32 @@
         .chap-title {
             font-family: var(--font-display);
             font-size: 2rem;
-            color: var(--gold-primary);
+            color: var(--violet-primary);
             margin-bottom: 25px;
             line-height: 1.2;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 5px rgba(0,0,0,0.8), 0 0 15px rgba(155, 109, 255, 0.2);
         }
         .chap-text {
             font-size: 0.95rem;
             line-height: 1.9;
-            color: #bfa888;
+            color: #b0a0c8;
             margin-bottom: 25px;
             font-weight: 300;
         }
         .chap-text em {
-            color: var(--blood-bright);
+            color: var(--violet-bright);
             font-style: normal;
-            text-shadow: 0 0 8px rgba(138, 3, 3, 0.5);
+            text-shadow: 0 0 8px rgba(107, 33, 168, 0.5);
         }
         .chap-quote {
-            border-left: 3px solid var(--gold-primary);
+            border-left: 3px solid var(--violet-primary);
             padding-left: 25px;
             margin: 40px 0;
             font-family: var(--font-display);
             font-style: italic;
             color: var(--text-main);
             font-size: 1.2rem;
-            background: linear-gradient(90deg, rgba(207, 181, 59, 0.05), transparent);
+            background: linear-gradient(90deg, rgba(155, 109, 255, 0.06), transparent);
             padding: 20px 25px;
         }
 
@@ -479,21 +481,22 @@
             text-align: center;
             max-width: 400px;
             padding: 30px;
-            border: 1px solid var(--blood-red);
-            box-shadow: 0 0 30px var(--blood-red);
-            background: rgba(10,0,0,0.9);
+            border: 1px solid var(--violet-deep);
+            box-shadow: 0 0 30px var(--violet-deep), 0 0 60px rgba(107, 33, 168, 0.3);
+            background: rgba(8, 0, 16, 0.9);
         }
         .ee-title {
             font-family: var(--font-display);
-            color: var(--blood-bright);
+            color: var(--violet-bright);
             margin-bottom: 15px;
             letter-spacing: 3px;
             font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
         }
         .ee-msg {
             font-family: var(--font-mono);
             font-size: 0.8rem;
-            color: #888;
+            color: #8a7a9a;
             line-height: 1.6;
         }
         .ee-close {
@@ -504,7 +507,7 @@
             padding: 5px 15px;
             font-size: 0.7rem;
         }
-        .ee-close:hover { border-color: var(--gold-primary); color: var(--gold-primary); }
+        .ee-close:hover { border-color: var(--violet-primary); color: var(--violet-primary); }
 
         /* Mobile Adjustments */
         @media (max-width: 600px) {
@@ -589,19 +592,19 @@
                 <button class="nav-btn" id="nextBtn" onclick="changeChapter(1)">&#8594;</button>
             </div>
             <div class="reader-content" id="readerContent">
-                
-                <!-- Chapter 1: STATIC (Lukisan putri & pangeran di bawah pohon yang gugur) -->
+
+                                <!-- Chapter 1: STATIC (Siluet Pangeran & Putri di bawah pohon gugur) -->
                 <div class="chapter-page active">
-                    <img src="https://image.qwenlm.ai/public_source/915e2a2c-6d35-4942-bd97-4de5389c7553/11c49b708-e111-49b0-ae4c-56736a7dac69.png" class="chap-art" alt="Static Art">
+                    <img src="https://image.qwenlm.ai/public_source/dac8e2c7-d2ea-470a-ba82-9f76bd515a1c/1a02192d7-a3fd-42ef-8cb3-7158969e1aca.png" class="chap-art" alt="Silhouette of a prince and princess beneath a dying autumn tree, leaves falling, violet twilight">
                     <span class="chap-num">Fragment I</span>
                     <h2 class="chap-title">STATIC</h2>
                     <div class="chap-quote">"Static is the sound of a body trying to remember what a soul used to feel."</div>
                     <p class="chap-text">The song opens with a plea that is equal parts devotion and dread: <em>"Baby, you haunt me. Don't make me linger."</em> There is no anger here, only the quiet terror of someone who senses the emotional architecture collapsing.</p>
                     <p class="chap-text"><em>"Your skin of chest shines in a burning light."</em> This is immersion so total it becomes annihilation. You press yourself against someone's body to feel close, and all you feel is how far away they are beneath the skin.</p>
-                    <p class="chap-text" style="text-align: center; margin-top: 40px; color: var(--gold-primary); font-family: var(--font-display);">Two bodies in the same room, generating heat, producing no sound.</p>
+                    <p class="chap-text" style="text-align: center; margin-top: 40px; color: var(--violet-primary); font-family: var(--font-display);">Two bodies in the same room, generating heat, producing no sound.</p>
                 </div>
 
-                <!-- Chapter 2: MEDEA (Lukisan putri Yunani memegang pisau sambil menangis darah) -->
+                <!-- Chapter 2: MEDEA -->
                 <div class="chapter-page">
                     <img src="https://image.qwenlm.ai/public_source/915e2a2c-6d35-4942-bd97-4de5389c7553/1cbc8eed1-0dac-439c-9411-032d7dcccee1.png" class="chap-art" alt="Medea Art">
                     <span class="chap-num">Fragment II</span>
@@ -609,7 +612,7 @@
                     <div class="chap-quote">"There is a particular kind of despair that lives only inside obsession."</div>
                     <p class="chap-text">There is a loneliness that no crowd can cure. The kind that finds you mid-laughter, surrounded by voices that somehow never reach you.</p>
                     <p class="chap-text">Medea is not a story about a villain. It is a story about what happens when a person gives everything and is met with disposal. It is the sound of someone deciding that if they cannot be loved wholly, they will not be loved at all.</p>
-                    <p class="chap-text" style="text-align: center; margin-top: 40px; color: var(--gold-primary); font-family: var(--font-display);">You don't have to chase the stars. But you are allowed to worship it.</p>
+                    <p class="chap-text" style="text-align: center; margin-top: 40px; color: var(--violet-primary); font-family: var(--font-display);">You don't have to chase the stars. But you are allowed to worship it.</p>
                 </div>
 
                 <!-- Chapter 3 -->
@@ -620,7 +623,7 @@
                     <div class="chap-quote">"The sound of an obsession recognizing its own decay."</div>
                     <p class="chap-text"><em>"I'm falling from the heaven you built with skin and bones."</em> The paradise was constructed from a body. And now the narrator is falling from it because skin and bones were never meant to hold the weight of a sky.</p>
                     <p class="chap-text"><em>"You burned my corduroy leather..."</em> Corduroy is texture; leather is skin hardened to endure. The obsession does not fade gracefully; it is ripped from you while you are still wearing it.</p>
-                    <p class="chap-text" style="text-align: center; margin-top: 40px; color: var(--gold-primary); font-family: var(--font-display);">It is the sound of peeling off a second skin.</p>
+                    <p class="chap-text" style="text-align: center; margin-top: 40px; color: var(--violet-primary); font-family: var(--font-display);">It is the sound of peeling off a second skin.</p>
                 </div>
 
                 <!-- Chapter 4 -->
@@ -631,7 +634,7 @@
                     <div class="chap-quote">"A love song that is also a farewell."</div>
                     <p class="chap-text">A meditation on the most isolating form of solitude: the loneliness that persists even when one is loved. It is the paradox of being surrounded, yet utterly unseen.</p>
                     <p class="chap-text"><em>"Tempest, Heaven; They will not hold us both."</em> Love, in its fullest form, is not enough to contain two people who exist in different emotional realities.</p>
-                    <p class="chap-text" style="text-align: center; margin-top: 40px; color: var(--gold-primary); font-family: var(--font-display);">Waiting for a sky that has already changed color.</p>
+                    <p class="chap-text" style="text-align: center; margin-top: 40px; color: var(--violet-primary); font-family: var(--font-display);">Waiting for a sky that has already changed color.</p>
                 </div>
 
             </div>
@@ -679,7 +682,7 @@
             }, 2500);
         });
 
-        /* --- PARTICLE SYSTEM (Ash Embers) --- */
+        /* --- PARTICLE SYSTEM (Violet Ash Embers) --- */
         const canvas = document.getElementById('particle-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -699,7 +702,7 @@
                 this.speedY = Math.random() * 1.5 + 0.5;
                 this.speedX = (Math.random() - 0.5) * 1;
                 this.opacity = Math.random() * 0.6 + 0.1;
-                this.color = Math.random() > 0.8 ? '#cfb53b' : '#8a0303';
+                this.color = Math.random() > 0.75 ? '#9b6dff' : '#4c1d95';
             }
             update() {
                 this.y -= this.speedY;
